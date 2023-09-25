@@ -24,18 +24,18 @@ void bubble_sort(int *array, size_t size)
 				temp = array[j];
 				array[j] = array[j + 1];
 				array[j + 1] = temp;
-				swapped = 1;
+				swapped = 1;		
+
+				/*print array after swap*/
+				for (k = 0; k < size; k++)
+				{
+					printf("%d ", array[k]);
+				}
+				printf("\n");
 			}
 		}
 
-		/*print array after swap*/
-		for (k = 0; k < size; k++)
-		{
-			printf("%d ", array[k]);
-		}
-		printf("\n");
-
-	/*if no swap occured in this pass, the array is already sorted*/
+		/*if no swap occured in this pass, the array is already sorted*/
 		if (swapped == 0)
 			break;
 	}
