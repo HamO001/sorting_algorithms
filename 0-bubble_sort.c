@@ -1,6 +1,12 @@
 #include <stdio.h>
 #include "sort.h"
 
+/**
+ * bubble_sort - function to sort integers using buble sort
+ * @array: array to be sorted
+ * @size: size of the array
+ * Return: Nothing
+ */
 void bubble_sort(int *array, size_t size)
 {
 	int swapped;
