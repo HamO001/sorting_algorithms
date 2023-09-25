@@ -20,5 +20,6 @@ typedef struct listint_s
 listint_t *create_listint(const int *array, size_t size);
 void free_listint(listint_t *list);
 void print_list(const listint_t *list);
+void swap_nodes(listint_t **list, listint_t *prev, listint_t *temp);
 
 #endif /* LISTINT_H */
