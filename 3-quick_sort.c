@@ -16,37 +16,38 @@ void swap_ints(int *a, int *b)
 }
 
 /**
- * hoare_partition - order an array according to hoare partition scheme
+ * lamuto_partition - order an array according to hoare partition scheme
  * @array: array of integers
  * @size: size of the array
- * @left: starting of the subset to order
- * @right: the ending of the subset to order
+ * @low: starting of the subset to order
+ * @high: the ending of the subset to order
  * Return: final partition index
  */
-size_t hoare_partition(int *array, size_t size, int left, int right)
+size_t lomuto_partition(int *array, size_t size, int left, int right)
 {
-	int pivot, i, j;
+	int *pivot_ptr, up, down;
 
-	pivot = array[left];
-	i = left - 1;
-	j = right + 1;
+	pivot_ptr = array + right;
 
-	while (1)
+	for (up = down = left; down < right; down++)
 	{
-		do {
-			i++;
-		} while (array[i] < pivot);
-
-		do {
-			j--;
-		} while (array[j] > pivot);
-
-		if (i >= j)
-			return (j);
-
-		swap_ints(&array[i], &array[j]);
+		if (array[down] < *pivot_ptr)
+		{
+			if (up < down)
+			{
+				swap_ints(array + down, array + up);
+				print_array(array, size);
+			}
+			up++;
+		}
+	}
+	if (array[up] > *pivot_ptr)
+	{
+		swap_ints(array + up, pivot_ptr);
 		print_array(array, size);
 	}
+
+	return (up);
 
 }
 
@@ -57,15 +58,15 @@ size_t hoare_partition(int *array, size_t size, int left, int right)
  * @left: starting index of the array partition order
  * @right: ending index of the array partition scheme
  */
-void hoare_sort(int *array, size_t size, size_t left, size_t right)
+void lomuto_sort(int *array, size_t size, size_t left, size_t right)
 {
 	int partition;
 
-	if (left < right)
+	if (right - left > 0)
 	{
-		partition = hoare_partition(array, size, left, right);
-		hoare_sort(array, size, left, partition);
-		hoare_sort(array, size, partition + 1, right);
+		partition = lomuto_partition(array, size, left, right);
+		lomuto_sort(array, size, left, partition - 1);
+		lomuto_sort(array, size, partition + 1, right);
 	}
 }
 
@@ -80,5 +81,5 @@ void quick_sort(int *array, size_t size)
 	if (array == NULL || size < 2)
 		return;
 
-	hoare_sort(array, size, 0, size - 1);
+	lomuto_sort(array, size, 0, size - 1);
 }
