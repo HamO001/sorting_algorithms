@@ -1,5 +1,11 @@
 #include "sort.h"
 
+/**
+ * selection_sort - sorts an array of integers using selection sort
+ * @array: array to be sorted
+ * @size: size of the array
+ * Return: Nothing
+ */
 
 void selection_sort(int *array, size_t size)
 {
@@ -24,9 +30,10 @@ void selection_sort(int *array, size_t size)
 			temp = array[i];
 			array[i] = array[min_index];
 			array[min_index] = temp;
+			print_array(array, size);
 		}
 		/*Print array after each swap*/
-		print_array(array, size);
+		/*print_array(array, size);*/
 
 	}
 }
