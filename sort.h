@@ -18,4 +18,6 @@ size_t partition(int *array, size_t low, size_t high);
 void swap(int *a, int *b);
 void quick_sort_helper(int *array, size_t size, size_t low, size_t high);
 void quick_sort(int *array, size_t size);
+void shell_sort(int *array, size_t size);
+
 #endif
